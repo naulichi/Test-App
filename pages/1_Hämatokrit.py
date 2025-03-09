@@ -4,9 +4,6 @@ st.title("Hämatokritwert berechnen")
 
 st.write("Hier kannst du einen Hämatokritwert berechnen.")
 
-
-import matplotlib.pyplot as plt
-
 def calculate_hematocrit(rbc, mcv):
     return (rbc * mcv) / 10
 
