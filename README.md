@@ -1,9 +1,9 @@
 # BMLD-Inf2-AppV0
 
-Das leere Gerüst um eine App aufzubauen.
+Eine Testapp, in welcher diverse Funktionen getestet werden.
 
 ## Autor
 
-Samuel Wehrli (wehs@zhaw.ch)
+Chiara Nauli (naulichi@students.zhaw.ch)
 
 
