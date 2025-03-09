@@ -1,10 +1,9 @@
 import streamlit as st
+import pandas as pd
 
 st.title("Hämatokritwert berechnen")
 
 st.write("Hier kannst du einen Hämatokritwert berechnen.")
-
-import plotly.graph_objects as go
 
 def calculate_hematocrit(rbc, mcv):
     return (rbc * mcv) / 10
@@ -25,28 +24,12 @@ if st.button("Berechnen"):
         else:
             reference_min, reference_max = 37, 45
 
-        fig = go.Figure()
-        fig.add_trace(go.Bar(
-            y=['Referenzbereich'],
-            x=[reference_max],
-            orientation='h',
-            name='Referenzbereich',
-            marker=dict(color='blue')
-        ))
-        fig.add_trace(go.Bar(
-            y=['Dein Wert'],
-            x=[hematocrit],
-            orientation='h',
-            name='Dein Wert',
-            marker=dict(color='red')
-        ))
+        data = {
+            'Parameter': ['Dein Wert', 'Referenzbereich Min', 'Referenzbereich Max'],
+            'Hämatokritwert (%)': [hematocrit, reference_min, reference_max]
+        }
 
-        fig.update_layout(
-            xaxis=dict(range=[0, 100]),
-            xaxis_title='Hämatokritwert (%)',
-            barmode='group'
-        )
-
-        st.plotly_chart(fig)
+        df = pd.DataFrame(data)
+        st.write(df)
     else:
         st.write("Das MCV muss größer als 0 sein.")
