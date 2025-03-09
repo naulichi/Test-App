@@ -24,18 +24,6 @@ if st.button("Berechnen"):
         else:
             reference_min, reference_max = 37, 45
 
-        data = {
-            'Parameter': ['Dein Wert', 'Referenzbereich Min', 'Referenzbereich Max'],
-            'Hämatokritwert (%)': [hematocrit, reference_min, reference_max]
-        }
-
-        df = pd.DataFrame(data)
-        st.write(df)
-
-        # Displaying the data without plotting
-        st.write(f"Referenzbereich Min: {reference_min}%")
-        st.write(f"Referenzbereich Max: {reference_max}%")
-        st.write(f"Dein Wert: {hematocrit:.2f}%")
 
         # Adding statements based on the result
         if hematocrit < reference_min:
