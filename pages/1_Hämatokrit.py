@@ -11,7 +11,7 @@ def calculate_hematocrit(rbc, mcv):
 st.write("Bitte gib die folgenden Werte ein:")
 
 rbc = st.number_input("Anzahl der Erythrozyten (in 10^12/Liter):", min_value=0.0, step=0.1)
-mcv = st.number_input("Mittleres korpuskuläres Volumen (MCV in Femtoliter):", min_value=0.0, step=0.1)
+mcv = st.number_input("Mittleres korpuskuläres Volumen (in Femtoliter):", min_value=0.0, step=0.1)
 gender = st.selectbox("Geschlecht:", ["Männlich", "Weiblich"])
 
 if st.button("Berechnen"):
