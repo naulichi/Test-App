@@ -17,20 +17,21 @@ gender = st.selectbox("Geschlecht:", ["Männlich", "Weiblich"])
 if st.button("Berechnen"):
     if mcv > 0:
         hematocrit = calculate_hematocrit(rbc, mcv)
-        st.write(f"Der Hämatokritwert beträgt: {hematocrit:.2f}%")
-
+        
         if gender == "Männlich":
             reference_min, reference_max = 43, 49
         else:
             reference_min, reference_max = 37, 45
 
-
         # Adding statements based on the result
         if hematocrit < reference_min:
+            st.markdown(f"<span style='color:red'>Der Hämatokritwert beträgt: {hematocrit:.2f}%</span>", unsafe_allow_html=True)
             st.write("Ihr Hämatokritwert liegt unterhalb des Referenzbereiches.")
         elif hematocrit > reference_max:
+            st.markdown(f"<span style='color:red'>Der Hämatokritwert beträgt: {hematocrit:.2f}%</span>", unsafe_allow_html=True)
             st.write("Ihr Hämatokritwert liegt oberhalb des Referenzbereiches.")
         else:
+            st.markdown(f"<span style='color:green'>Der Hämatokritwert beträgt: {hematocrit:.2f}%</span>", unsafe_allow_html=True)
             st.write("Ihr Hämatokritwert liegt im Referenzbereich.")
     else:
         st.write("Das MCV muss größer als 0 sein.")
