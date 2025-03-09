@@ -1,9 +1,10 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 
 st.title("Hämatokritwert berechnen")
 
 st.write("Hier kannst du einen Hämatokritwert berechnen.")
+
+import plotly.graph_objects as go
 
 def calculate_hematocrit(rbc, mcv):
     return (rbc * mcv) / 10
@@ -19,15 +20,33 @@ if st.button("Berechnen"):
         hematocrit = calculate_hematocrit(rbc, mcv)
         st.write(f"Der Hämatokritwert beträgt: {hematocrit:.2f}%")
 
-        fig, ax = plt.subplots()
         if gender == "Männlich":
             reference_min, reference_max = 43, 49
         else:
             reference_min, reference_max = 37, 45
 
-        ax.barh(['Referenzbereich', 'Dein Wert'], [reference_max, hematocrit], color=['blue', 'red'])
-        ax.set_xlim(0, 100)
-        ax.set_xlabel('Hämatokritwert (%)')
-        st.pyplot(fig)
+        fig = go.Figure()
+        fig.add_trace(go.Bar(
+            y=['Referenzbereich'],
+            x=[reference_max],
+            orientation='h',
+            name='Referenzbereich',
+            marker=dict(color='blue')
+        ))
+        fig.add_trace(go.Bar(
+            y=['Dein Wert'],
+            x=[hematocrit],
+            orientation='h',
+            name='Dein Wert',
+            marker=dict(color='red')
+        ))
+
+        fig.update_layout(
+            xaxis=dict(range=[0, 100]),
+            xaxis_title='Hämatokritwert (%)',
+            barmode='group'
+        )
+
+        st.plotly_chart(fig)
     else:
         st.write("Das MCV muss größer als 0 sein.")
