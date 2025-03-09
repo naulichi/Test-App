@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 
 st.title("Hämatokritwert berechnen")
 
@@ -30,5 +32,14 @@ if st.button("Berechnen"):
 
         df = pd.DataFrame(data)
         st.write(df)
+
+        # Plotting the data
+        fig, ax = plt.subplots()
+        ax.barh(['Referenzbereich Min', 'Dein Wert', 'Referenzbereich Max'], [reference_min, hematocrit, reference_max], color=['blue', 'green', 'blue'])
+        ax.set_xlim(0, max(reference_max, hematocrit) + 10)
+        ax.set_xlabel('Hämatokritwert (%)')
+        ax.set_title('Hämatokritwert im Vergleich zum Referenzbereich')
+
+        st.pyplot(fig)
     else:
         st.write("Das MCV muss größer als 0 sein.")
