@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib as plt
+import matplotlib
+import matplotlib.pyplot as plt
 
 st.title("Hämatokritwert berechnen")
 
