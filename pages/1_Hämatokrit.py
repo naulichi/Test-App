@@ -55,12 +55,11 @@ if st.button("Berechnen"):
     else:
         st.write("Das MCV muss größer als 0 sein.")
 
-# safe the data to the persistent storage
-data = {
-    "rbc": rbc,
-    "mcv": mcv,
-    "gender": gender,
-    "hematocrit": hematocrit
-}
-
-DataManager().append_record(data)
+# Save the data to the persistent storage
+data_manager = DataManager()
+data_manager.append_record({
+    'rbc': rbc,
+    'mcv': mcv,
+    'hematocrit': hematocrit,
+    'gender': gender
+})
