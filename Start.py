@@ -28,9 +28,3 @@ st.title("Meine erste Streamlit App")
 Diese App wurde von folgender Person entwickelt:
 - Chiara Nauli (naulichi@students.zhaw.ch)
 """
-
-username = st.secrets["webdav.username"]
-password = st.secrets["webdav.password"]
-
-st.write(f"Username: {username}")
-st.write(f"Password: {password}")
