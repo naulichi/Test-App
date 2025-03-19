@@ -1,13 +1,9 @@
 # Added WEHS
 local/
+
 .streamlit/secrets.toml
 app_data/
 .DS_Store
-
-[webdav] # Credentials for WebDAV file storage such as SwitchDrive
-base_url = "https://drive.switch.ch/remote.php/webdav/"
-username = "chiara.nauli@tschuba.ch"
-password = "HOFVO-KRKNT-VFRQH-ZIHWI"
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
