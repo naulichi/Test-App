@@ -3,7 +3,7 @@ from utils.login_manager import LoginManager
 LoginManager().go_to_login('Start.py')  
 
 import streamlit as st
-# import pandas as pd
+import pandas as pd
 from utils.data_manager import DataManager
 import matplotlib.pyplot as plt
 
@@ -21,6 +21,7 @@ st.write("Bitte gib die folgenden Werte ein:")
 rbc = st.number_input("Anzahl der Erythrozyten (in 10^12/Liter):", min_value=0.0, step=0.1)
 mcv = st.number_input("Mittleres korpuskuläres Volumen (in Femtoliter):", min_value=0.0, step=0.1)
 gender = st.selectbox("Geschlecht:", ["Männlich", "Weiblich"])
+hematocrit = calculate_hematocrit(rbc, mcv)
 
 if st.button("Berechnen"):
     if mcv > 0:
@@ -52,13 +53,14 @@ if st.button("Berechnen"):
         ax.set_ylabel('Hämatokrit (%)')
         ax.legend()
         st.pyplot(fig)
-        # Save the data to the persistent storage
-        data_manager = DataManager()
-        data_manager.append_record({
-            'rbc': rbc,
-            'mcv': mcv,
-            'hematocrit': hematocrit,
-            'gender': gender
-        })
     else:
         st.write("Das MCV muss größer als 0 sein.")
+
+# Save the data to the persistent storage
+data_manager = DataManager()
+data_manager.append_record({
+    'rbc': rbc,
+    'mcv': mcv,
+    'hematocrit': hematocrit,
+    'gender': gender
+    })
