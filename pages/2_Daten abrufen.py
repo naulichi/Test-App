@@ -14,12 +14,15 @@ st.write("Hier kannst du dir deine bisherigen Hämatokritwerte in einer Übersic
 "Er wird in Prozent angegeben und gibt an, wie viel Prozent des Blutvolumens aus den Erythrozyten besteht.")    
 
 # Load the historical data
-data = data_manager.load_records()
+data = DataManager.load_records()
 
 # Display the historical data in a table
 st.write("Historische Daten:")
 df = pd.DataFrame(data)
 st.dataframe(df)
+
+reference_min, reference_max = 43, 49
+reference_min, reference_max = 37, 45
 
 # Plot the historical data
 fig, ax = plt.subplots()
