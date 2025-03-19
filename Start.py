@@ -6,7 +6,7 @@ import pandas as pd
 from utils.data_manager import DataManager
 
 # initialize the data manager
-data_manager = DataManager(fs_protocol='webdav', fs_root_folder="Test App")  # switch drive 
+data_manager = DataManager(fs_protocol='webdav', fs_root_folder="Test-App")  # switch drive 
 
 # load the data from the persistent storage into the session state
 data_manager.load_user_data(
@@ -28,3 +28,9 @@ st.title("Meine erste Streamlit App")
 Diese App wurde von folgender Person entwickelt:
 - Chiara Nauli (naulichi@students.zhaw.ch)
 """
+
+username = st.secrets["webdav.username"]
+password = st.secrets["webdav.password"]
+
+st.write(f"Username: {username}")
+st.write(f"Password: {password}")
