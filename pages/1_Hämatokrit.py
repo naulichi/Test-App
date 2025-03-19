@@ -4,11 +4,14 @@ LoginManager().go_to_login('Start.py')
 
 import streamlit as st
 import pandas as pd
+from utils.data_manager import DataManager
 import matplotlib.pyplot as plt
 
 st.title("Hämatokritwert berechnen")
 
-st.write("Hier kannst du einen Hämatokritwert berechnen.")
+st.write("Hier kannst du einen Hämatokritwert berechnen."
+"Der Hämatokritwert gibt den Anteil der festen Bestandteile des Blutes an. "
+"Er wird in Prozent angegeben und gibt an, wie viel Prozent des Blutvolumens aus den Erythrozyten besteht.")    
 
 def calculate_hematocrit(rbc, mcv):
     return (rbc * mcv) / 10
@@ -51,3 +54,13 @@ if st.button("Berechnen"):
         st.pyplot(fig)
     else:
         st.write("Das MCV muss größer als 0 sein.")
+
+# safe the data to the persistent storage
+data = {
+    "rbc": rbc,
+    "mcv": mcv,
+    "gender": gender,
+    "hematocrit": hematocrit
+}
+
+DataManager().append_record(data)
