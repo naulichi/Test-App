@@ -3,7 +3,7 @@ from utils.login_manager import LoginManager
 LoginManager().go_to_login('Start.py')  
 
 import streamlit as st
-import pandas as pd
+# import pandas as pd
 from utils.data_manager import DataManager
 import matplotlib.pyplot as plt
 
@@ -52,14 +52,13 @@ if st.button("Berechnen"):
         ax.set_ylabel('Hämatokrit (%)')
         ax.legend()
         st.pyplot(fig)
+        # Save the data to the persistent storage
+        data_manager = DataManager()
+        data_manager.append_record({
+            'rbc': rbc,
+            'mcv': mcv,
+            'hematocrit': hematocrit,
+            'gender': gender
+        })
     else:
         st.write("Das MCV muss größer als 0 sein.")
-
-# Save the data to the persistent storage
-data_manager = DataManager()
-data_manager.append_record({
-    'rbc': rbc,
-    'mcv': mcv,
-    'hematocrit': hematocrit,
-    'gender': gender
-})
