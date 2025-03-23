@@ -3,7 +3,6 @@ from utils.login_manager import LoginManager
 LoginManager().go_to_login('Start.py')  
 
 import streamlit as st
-import pandas as pd
 from utils.data_manager import DataManager
 import matplotlib.pyplot as plt
 
@@ -63,4 +62,4 @@ data_manager.append_record({
     'mcv': mcv,
     'hematocrit': hematocrit,
     'gender': gender
-    })
+})
