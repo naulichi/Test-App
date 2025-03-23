@@ -52,18 +52,14 @@ if st.button("Berechnen"):
         ax.set_ylabel('Hämatokrit (%)')
         ax.legend()
         st.pyplot(fig)
-        
-        # Save the data to the persistent storage
-        try:
-            data_manager = DataManager()
-            data_manager.append_record(record_dict={
-                'rbc': rbc,
-                'mcv': mcv,
-                'hematocrit': hematocrit,
-                'gender': gender
-            })
-            st.write("Daten wurden erfolgreich gespeichert.")
-        except Exception as e:
-            st.write(f"Fehler beim Speichern der Daten: {e}")
     else:
-        st.write("Das MCV muss größer als 0 sein.")
+        st.write("Das MCV muss grösser als 0 sein.")
+
+#  udate data in session state and save to persistent storage
+result = {
+    'rbc': rbc,
+    'mcv': mcv,
+    'gender': gender,
+    'hematocrit': hematocrit
+}
+DataManager().append_record(session_state_key='data_df', record_dict=result)  # save data to persistent storage

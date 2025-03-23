@@ -14,32 +14,13 @@ st.write("Hier kannst du dir deine bisherigen Hämatokritwerte in einer Übersic
 "Er wird in Prozent angegeben und gibt an, wie viel Prozent des Blutvolumens aus den Erythrozyten besteht.")    
 
 # Load the historical data
-data = DataManager.load_records()
+data_df = st.session_state['data_df']
+if data_df.empty:
+    st.write("Du hast noch keine Daten gespeichert.")
+    st.stop()
 
-# Display the historical data in a table
-st.write("Historische Daten:")
-df = pd.DataFrame(data)
-st.dataframe(df)
+# sort the data by timestamp
+data_df = data_df.sort_values(by='timestamp', ascending=False)
 
-reference_min, reference_max = 43, 49
-reference_min, reference_max = 37, 45
-
-# Plot the historical data
-fig, ax = plt.subplots()
-ax.plot(df['hematocrit'], label='Hämatokritwert', marker='o')
-ax.axhline(y=reference_min, color='r', linestyle='--', label='Referenzbereich Min')
-ax.axhline(y=reference_max, color='r', linestyle='--', label='Referenzbereich Max')
-ax.set_ylabel('Hämatokrit (%)')
-ax.legend()
-st.pyplot(fig)
-
-# Second page for history
-if st.sidebar.button("Historie anzeigen"):
-    st.sidebar.write("Historie der berechneten Werte")
-    history = data_manager.load_history()
-    if history:
-        df = pd.DataFrame(history, columns=["Geschlecht", "MCV", "RBC", "Hämatokrit"])
-        st.write(df)
-        st.line_chart(df.set_index("Geschlecht")["Hämatokrit"])
-    else:
-        st.write("Keine historischen Daten gefunden.")
+# Display the data
+st.dataframe(data_df)
