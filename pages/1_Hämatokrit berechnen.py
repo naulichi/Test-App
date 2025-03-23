@@ -57,7 +57,7 @@ if st.button("Berechnen"):
 
 # Save the data to the persistent storage
 data_manager = DataManager()
-data_manager.append_record({
+data_manager.append_record(record_dict={
     'rbc': rbc,
     'mcv': mcv,
     'hematocrit': hematocrit,
