@@ -15,9 +15,9 @@ login_manager.login_register()  # opens login page
 data_manager.load_app_data(
     session_state_key='data_df', 
     file_name='data.csv', 
-    initial_value = pd.DataFrame(), 
-    parse_dates = ['timestamp']
-    )
+    initial_value=pd.DataFrame(), 
+    parse_dates=['timestamp']  # Ensure this line is uncommented
+)
 
 st.title("Meine erste Streamlit App")
 
